@@ -3,39 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Criticamente Rosebud</title>
-  <meta name="description" content="Blog di recensioni cinematografiche, consigli film e bacheca lavoro nell'ambito del cinema." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <title>Home | Criticamente Rosebud</title>
+  <meta name="description" content="Criticamente Rosebud: blog di recensioni film, consigli cinematografici e bacheca lavoro nel cinema." />
   <style>
     :root{
-      --bg: #111015;
-      --panel: #17141b;
-      --panel-2: #1c1820;
-      --text: #f4eadb;
-      --muted: rgba(244, 234, 219, .72);
-      --line: rgba(255,255,255,.10);
-      --rose: #c96a7c;
-      --rose-2: #f1d8c5;
-      --accent: #d8b9bf;
-      --shadow: 0 24px 80px rgba(0,0,0,.28);
+      --bg:#111015;
+      --panel:#17141b;
+      --panel-2:#1c1820;
+      --text:#f4eadb;
+      --muted:rgba(244,234,219,.72);
+      --line:rgba(255,255,255,.10);
+      --rose:#c96a7c;
+      --rose-2:#f1d8c5;
+      --accent:#d8b9bf;
+      --shadow:0 24px 80px rgba(0,0,0,.28);
     }
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Inter", sans-serif;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(201,106,124,.16), transparent 26%),
         radial-gradient(circle at bottom left, rgba(241,216,197,.08), transparent 28%),
         var(--bg);
       color:var(--text);
     }
-    a{ color:inherit; text-decoration:none; }
-    button, input, textarea { font: inherit; }
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
 
     .site{
       width:min(1200px, calc(100% - 32px));
@@ -65,8 +61,8 @@
       flex-wrap:wrap;
       justify-content:center;
     }
-    .nav a{ color:var(--muted); }
-    .nav a:hover{ color:#fff; }
+    .nav a{color:var(--muted)}
+    .nav a:hover{color:#fff}
 
     .hero{
       min-height:540px;
@@ -77,14 +73,13 @@
       text-align:center;
       padding:72px 24px 48px;
     }
-
     .hero-kicker{
       margin:0;
       letter-spacing:.36em;
       font-size:14px;
       color:var(--accent);
+      text-transform:uppercase;
     }
-
     .hero h1{
       max-width:10.5ch;
       margin:18px 0 0;
@@ -92,8 +87,8 @@
       line-height:.95;
       letter-spacing:-.06em;
       color:#fff;
+      text-transform:uppercase;
     }
-
     .hero-text{
       max-width:62ch;
       margin:22px 0 0;
@@ -117,9 +112,10 @@
       letter-spacing:.08em;
       border:0;
       cursor:pointer;
-      transition:transform .2s ease, opacity .2s ease;
+      transition:transform .2s ease, opacity .2s ease, background .2s ease;
+      text-transform:uppercase;
     }
-    .btn:hover{ transform:translateY(-1px); }
+    .btn:hover{transform:translateY(-1px)}
     .btn.small{
       min-height:42px;
       padding:0 18px;
@@ -132,7 +128,7 @@
       border:1px solid var(--line);
     }
 
-    .section{ margin-top:30px; }
+    .section{margin-top:30px}
     .section-title{
       margin:0 0 18px;
       font-size:clamp(1.7rem, 3vw, 2.4rem);
@@ -172,23 +168,19 @@
       flex-direction:column;
       min-height:100%;
     }
-
     .review-thumb{
       min-height:220px;
       padding:18px;
       display:flex;
       align-items:flex-start;
       justify-content:flex-start;
-      background:
-        linear-gradient(135deg, rgba(42,28,37,.95), rgba(21,19,26,.96) 55%, rgba(56,35,44,.95));
+      background:linear-gradient(135deg, rgba(42,28,37,.95), rgba(21,19,26,.96) 55%, rgba(56,35,44,.95));
     }
-
     .review-index{
       font-size:38px;
       font-weight:800;
       color:rgba(255,255,255,.12);
     }
-
     .review h3{
       margin:0;
       padding:18px 18px 4px;
@@ -197,7 +189,6 @@
       color:#fff;
       text-transform:uppercase;
     }
-
     .review p{
       margin:0;
       padding:0 18px 18px;
@@ -207,22 +198,109 @@
       text-transform:uppercase;
     }
 
-    .review-body{
-      padding:0 18px 18px;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:14px;
+    .panel{
+      margin-top:24px;
+      padding:24px;
+      border-radius:28px;
+      border:1px solid var(--line);
+      background:rgba(23,20,27,.86);
+      box-shadow:var(--shadow);
     }
 
-    .review-meta{
+    .panel-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-end;
+      flex-wrap:wrap;
+    }
+    .panel h2{
+      margin:0;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      text-transform:uppercase;
+    }
+    .panel p{
+      margin:12px 0 0;
+      color:var(--muted);
+      line-height:1.8;
+    }
+    .tool-note{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .review-grid{
+      display:grid;
+      gap:16px;
+      margin-top:18px;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+
+    .review-form{
+      display:grid;
+      gap:14px;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      margin-top:18px;
+    }
+    .review-form textarea,
+    .review-form .full{grid-column:1 / -1}
+
+    .form input,
+    .form textarea,
+    .search-box input,
+    .review-form input,
+    .review-form textarea{
+      width:100%;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      outline:none;
+      border-radius:18px;
+      padding:14px 16px;
+    }
+    .form textarea,
+    .review-form textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+    .form input::placeholder,
+    .form textarea::placeholder,
+    .search-box input::placeholder,
+    .review-form input::placeholder,
+    .review-form textarea::placeholder{
+      color:rgba(199,170,176,.9);
+    }
+
+    .review-list{
+      display:grid;
+      gap:14px;
+      grid-column:1 / -1;
+    }
+    .review-card{
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+    }
+    .review-card .review-meta{
       display:flex;
       justify-content:space-between;
       gap:12px;
-      padding:0 18px 18px;
+      padding:14px 18px 0;
       color:var(--muted);
       font-size:12px;
       letter-spacing:.14em;
       text-transform:uppercase;
+    }
+    .review-card .review-body{
+      padding:14px 18px 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
     }
 
     .review-actions{
@@ -231,7 +309,6 @@
       padding:0 18px 18px;
       flex-wrap:wrap;
     }
-
     .mini-btn{
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
@@ -246,12 +323,8 @@
       background:rgba(201,106,124,.12);
     }
 
-    .tips{
-      margin-top:34px;
-      padding-top:10px;
-    }
-
-    .tips-header{ margin-bottom:18px; }
+    .tips{margin-top:34px;padding-top:10px}
+    .tips-header{margin-bottom:18px}
     .dots{
       display:block;
       margin-bottom:10px;
@@ -263,17 +336,11 @@
       font-size:clamp(1.7rem, 3vw, 2.4rem);
       text-transform:uppercase;
     }
-
-    .tips-list{
-      display:grid;
-      gap:22px;
-    }
-
+    .tips-list{display:grid;gap:22px}
     .tip{
       padding:0 0 18px;
       border-bottom:1px solid var(--line);
     }
-
     .tip-genre{
       display:block;
       color:var(--accent);
@@ -281,7 +348,6 @@
       letter-spacing:.22em;
       text-transform:uppercase;
     }
-
     .tip h3{
       margin:10px 0 0;
       font-size:1.2rem;
@@ -289,129 +355,20 @@
       text-transform:uppercase;
     }
 
-    .collaborate{
-      margin-top:34px;
-      display:grid;
-      grid-template-columns:1fr;
-      gap:20px;
-    }
-
-    .collab-title h2{
-      margin:0;
-      font-size:clamp(1.7rem, 3vw, 2.4rem);
-      letter-spacing:-.04em;
-      text-transform:uppercase;
-    }
-
-    .collab-title h3{
-      margin:10px 0 0;
-      font-size:clamp(2rem, 3vw, 3rem);
-      line-height:1;
-    }
-
-    .form{
-      display:grid;
-      gap:14px;
-      max-width:720px;
-      margin-top:18px;
-    }
-
-    .form input,
-    .form textarea,
-    .search-box input{
-      width:100%;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      outline:none;
-      border-radius:18px;
-      padding:14px 16px;
-    }
-
-    .form textarea{
-      min-height:140px;
-      resize:vertical;
-    }
-
-    .form input::placeholder,
-    .form textarea::placeholder,
-    .search-box input::placeholder{
-      color:rgba(199,170,176,.9);
-    }
-
-    .tags{
-      display:flex;
-      gap:22px;
-      flex-wrap:wrap;
+    .jobs{
       margin-top:34px;
     }
-
-    .tags span{
-      font-size:14px;
-      font-weight:700;
-      color:#f4eadb;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-    }
-
-    .footer{
-      padding:32px 0 10px;
-      text-align:left;
-    }
-
-    .footer p{
-      margin:0 0 8px;
-      color:var(--muted);
-    }
-
-    .footer h4{
-      margin:16px 0 0;
-      font-size:18px;
-      letter-spacing:-.02em;
-    }
-
-    .panel{
-      margin-top:24px;
-      padding:24px;
-      border-radius:28px;
-      border:1px solid var(--line);
-      background:rgba(23,20,27,.86);
-      box-shadow:var(--shadow);
-    }
-
-    .panel h2{
-      margin:0;
-      font-size:clamp(1.7rem, 3vw, 2.4rem);
-      text-transform:uppercase;
-    }
-
-    .panel p{
-      margin:12px 0 0;
-      color:var(--muted);
-      line-height:1.8;
-    }
-
-    .panel-head{
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      align-items:flex-end;
-      flex-wrap:wrap;
-    }
-
     .search-box{
       min-width:280px;
       flex:1;
       max-width:420px;
     }
-
     .filters{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       margin:18px 0 16px;
     }
-
     .filter{
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
@@ -427,12 +384,10 @@
       border-color:transparent;
       font-weight:700;
     }
-
     .job-list{
       display:grid;
       gap:14px;
     }
-
     .job{
       display:grid;
       grid-template-columns:1.4fr .6fr;
@@ -442,7 +397,6 @@
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
     }
-
     .job-tag{
       color:var(--accent);
       text-transform:uppercase;
@@ -450,20 +404,17 @@
       font-size:11px;
       margin-bottom:10px;
     }
-
     .job-main h3{
       margin:0;
       color:#fff;
       text-transform:uppercase;
     }
-
     .job-main p{
       margin:12px 0 0;
       color:var(--muted);
       line-height:1.7;
       font-size:14px;
     }
-
     .job-side{
       display:flex;
       flex-direction:column;
@@ -474,51 +425,59 @@
       color:var(--muted);
       font-size:14px;
     }
-
     .job-side strong{
       color:#fff;
       text-transform:uppercase;
       letter-spacing:.08em;
     }
 
-    .admin-form{
+    .collaborate{
+      margin-top:34px;
       display:grid;
-      gap:14px;
-      margin-top:18px;
-      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:20px;
     }
-    .admin-form textarea,
-    .admin-form .full{
-      grid-column:1 / -1;
+    .collab-title h2{
+      margin:0;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing:-.04em;
+      text-transform:uppercase;
     }
-
-    .empty-state{
-      padding:22px;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      color:rgba(244,234,219,.72);
-      grid-column:1 / -1;
+    .collab-title h3{
+      margin:10px 0 0;
+      font-size:clamp(2rem, 3vw, 3rem);
+      line-height:1;
     }
 
-    .toolbar{
+    .tags{
       display:flex;
+      gap:22px;
       flex-wrap:wrap;
-      gap:12px;
-      margin:16px 0 6px;
-      align-items:center;
+      margin-top:34px;
+    }
+    .tags span{
+      font-size:14px;
+      font-weight:700;
+      color:#f4eadb;
+      letter-spacing:.16em;
+      text-transform:uppercase;
     }
 
-    .tool-note{
+    .footer{
+      padding:32px 0 10px;
+      text-align:left;
+    }
+    .footer p{
+      margin:0 0 8px;
       color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
+    }
+    .footer h4{
+      margin:16px 0 0;
+      font-size:18px;
+      letter-spacing:-.02em;
     }
 
     @media (max-width: 1100px){
-      .carousel{
-        grid-template-columns:1fr 1fr;
-      }
+      .carousel{grid-template-columns:1fr 1fr}
       .carousel-arrow{
         grid-column:1 / -1;
         min-width:0;
@@ -542,15 +501,11 @@
         min-height:auto;
         padding:54px 12px 36px;
       }
-      .hero h1{
-        max-width:none;
-      }
-      .carousel{
-        grid-template-columns:1fr;
-      }
-      .review-thumb{
-        min-height:180px;
-      }
+      .hero h1{max-width:none}
+      .carousel{grid-template-columns:1fr}
+      .review-thumb{min-height:180px}
+      .review-grid,
+      .review-form,
       .job{
         grid-template-columns:1fr;
       }
@@ -562,8 +517,8 @@
         flex-direction:row;
         flex-wrap:wrap;
       }
-      .admin-form{
-        grid-template-columns:1fr;
+      .panel{
+        padding:18px;
       }
       .search-box{
         min-width:0;
@@ -595,8 +550,8 @@
       <section id="blog" class="section">
         <h2 class="section-title">ULTIME RECENSIONI</h2>
 
-        <div class="carousel" id="carouselArea">
-          <button class="carousel-arrow" type="button" aria-label="Previous" id="prevBtn">Previous</button>
+        <div class="carousel">
+          <button class="carousel-arrow" type="button">Previous</button>
 
           <article class="review">
             <div class="review-thumb"><span class="review-index">01</span></div>
@@ -622,13 +577,13 @@
             <p>SPERIMENTALE</p>
           </article>
 
-          <button class="carousel-arrow" type="button" aria-label="Next" id="nextBtn">Next</button>
+          <button class="carousel-arrow" type="button">Next</button>
         </div>
 
         <div class="panel">
           <div class="panel-head">
             <div>
-              <span class="hero-kicker" style="display:block; margin-bottom:10px;">GESTIONE RECENSIONI</span>
+              <p class="hero-kicker" style="margin:0 0 10px;">GESTIONE RECENSIONI</p>
               <h2>Nuova recensione</h2>
             </div>
             <div class="tool-note">
@@ -636,7 +591,7 @@
             </div>
           </div>
 
-          <form id="reviewForm" class="admin-form">
+          <form id="reviewForm" class="review-form">
             <input id="reviewTitle" type="text" placeholder="Titolo film" required />
             <input id="reviewCategory" type="text" placeholder="Categoria es. Noir, Indie, Classici" required />
             <input id="reviewType" type="text" placeholder="Tipo es. Recensione film" required />
@@ -644,14 +599,14 @@
             <input id="reviewDate" type="text" placeholder="Data es. 12 Mar 2026" required />
             <textarea id="reviewExcerpt" class="full" placeholder="Estratto recensione" required></textarea>
 
-            <div class="toolbar full">
-              <button id="submitReview" type="submit" class="btn">PUBBLICA RECENSIONE</button>
-              <button id="cancelEdit" type="button" class="btn secondary" hidden>ANNULLA MODIFICA</button>
+            <div class="full" style="display:flex;gap:12px;flex-wrap:wrap;">
+              <button id="submitReview" type="submit" class="btn" style="margin-top:0;">PUBBLICA RECENSIONE</button>
+              <button id="cancelEdit" type="button" class="btn secondary" style="margin-top:0;" hidden>ANNULLA MODIFICA</button>
             </div>
           </form>
-        </div>
 
-        <div id="reviewsGrid" class="carousel" style="grid-template-columns:1fr; margin-top:22px;"></div>
+          <div id="reviewsGrid" class="review-grid"></div>
+        </div>
       </section>
 
       <section class="section tips">
@@ -681,11 +636,11 @@
         </div>
       </section>
 
-      <section class="section">
-        <div id="jobs" class="panel">
+      <section class="section jobs">
+        <div class="panel">
           <div class="panel-head">
             <div>
-              <span class="hero-kicker" style="display:block; margin-bottom:10px;">BACHECA LAVORO</span>
+              <p class="hero-kicker" style="margin:0 0 10px;">BACHECA LAVORO</p>
               <h2>CERCHI UNA COLLABORAZIONE NEL CINEMA?</h2>
             </div>
             <div class="search-box">
@@ -764,7 +719,7 @@
             <h3>Collabora con noi!</h3>
           </div>
 
-          <form class="form">
+          <form class="form" style="margin-top:18px;">
             <input type="text" placeholder="Nome" />
             <input type="text" placeholder="Cognome" />
             <input type="email" placeholder="Indirizzo email" />
@@ -855,12 +810,12 @@
       const rating = Number(data.rating || 0).toFixed(1);
 
       return `
-        <article class="review">
+        <article class="review-card">
           <div class="review-thumb">
             <span class="review-index">${escapeHtml(String(id).slice(0, 2).toUpperCase())}</span>
           </div>
-          <h3>${title}</h3>
-          <p>${type}</p>
+          <h3 style="margin:0;padding:18px 18px 4px;font-size:22px;letter-spacing:-.04em;color:#fff;text-transform:uppercase;">${title}</h3>
+          <p style="margin:0;padding:0 18px 18px;font-size:12px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;">${type}</p>
           <div class="review-meta">
             <span>${category}</span>
             <span>${date}</span>
@@ -880,8 +835,10 @@
 
     function renderEmptyState() {
       reviewsGrid.innerHTML = `
-        <div class="empty-state">
-          Nessuna recensione presente. Aggiungine una dal form qui sopra.
+        <div class="review-card" style="padding:22px;">
+          <div style="color:rgba(244,234,219,.72);">
+            Nessuna recensione presente. Aggiungine una dal form qui sopra.
+          </div>
         </div>
       `;
     }
@@ -914,9 +871,7 @@
         Number.isNaN(payload.rating) ||
         !payload.date ||
         !payload.excerpt
-      ) {
-        return;
-      }
+      ) return;
 
       if (editingId) {
         const existing = await get(ref(db, `reviews/${editingId}`));
@@ -966,7 +921,7 @@
         editingId = id;
         submitReview.textContent = "AGGIORNA RECENSIONE";
         cancelEdit.hidden = false;
-        window.location.hash = "#admin";
+        document.querySelector("#reviewForm").scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
 
@@ -980,14 +935,10 @@
 
       const items = [];
       snapshot.forEach((child) => {
-        items.push({
-          id: child.key,
-          ...child.val(),
-        });
+        items.push({ id: child.key, ...child.val() });
       });
 
       items.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
       reviewsGrid.innerHTML = items.map((item) => renderReviewCard(item.id, item)).join("");
     });
 
@@ -1017,26 +968,6 @@
     });
 
     jobSearch.addEventListener("input", applyJobFilters);
-
-    const carouselArea = document.getElementById("carouselArea");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    let carouselOffset = 0;
-
-    function moveCarousel(direction) {
-      const cards = Array.from(carouselArea.querySelectorAll(".review"));
-      if (!cards.length) return;
-
-      carouselOffset = (carouselOffset + direction + cards.length) % cards.length;
-      cards.forEach((card, index) => {
-        const visibleIndex = (index - carouselOffset + cards.length) % cards.length;
-        card.style.order = visibleIndex;
-      });
-    }
-
-    prevBtn.addEventListener("click", () => moveCarousel(-1));
-    nextBtn.addEventListener("click", () => moveCarousel(1));
   </script>
 </body>
 </html>
