@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Criticamente Rosebud | Blog cinema e bacheca lavoro</title>
+  <meta name="description" content="Blog di recensioni film, consigli di visione e bacheca lavoro nell'ambito del cinema." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-mark">C</div>
+        <div>
+          <div class="brand-kicker">Criticamente Rosebud</div>
+          <div class="brand-sub">Blog recensioni · Home · Job board cinema</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#blog">Blog</a>
+        <a href="#jobs">Bacheca lavoro</a>
+        <a href="#collabora" class="nav-cta">Collabora con noi</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <span class="badge">Cinema · Critica · Opportunità</span>
+          <h1>Recensioni di film, articoli e una bacheca per lavorare nel cinema.</h1>
+          <p>
+            Un sito elegante e cinematografico, con tono editoriale, sezioni dedicate alle recensioni,
+            consigli di visione e annunci per chi cerca collaborazioni nell’industria filmica.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#blog" class="btn btn-primary">Leggi le recensioni</a>
+            <a href="#jobs" class="btn btn-secondary">Cerca lavoro</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <span>Recensioni</span>
+              <strong>128 articoli</strong>
+            </div>
+            <div class="stat">
+              <span>Collaborazioni</span>
+              <strong>34 progetti</strong>
+            </div>
+            <div class="stat">
+              <span>Città</span>
+              <strong>Milano · Roma · Torino</strong>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="side-head">
+            <div>
+              <span class="mini-kicker">Ultime recensioni</span>
+              <h2>Editoriale in primo piano</h2>
+            </div>
+            <div class="icon-box">★</div>
+          </div>
+
+          <article class="mini-card">
+            <div class="mini-top">
+              <span>Noir</span>
+              <span>Lungo metraggio</span>
+            </div>
+            <h3>Le ombre al neon</h3>
+            <p>Una recensione che esplora luci, ritmo e tensione con taglio autoriale.</p>
+            <div class="mini-bottom">
+              <span>12 Mar 2026</span>
+              <span>4.8 ★</span>
+            </div>
+          </article>
+
+          <article class="mini-card">
+            <div class="mini-top">
+              <span>Indie</span>
+              <span>Corto metraggio</span>
+            </div>
+            <h3>Quadro dopo quadro</h3>
+            <p>Un racconto essenziale, costruito su silenzi, dettagli di regia e fotografia.</p>
+            <div class="mini-bottom">
+              <span>09 Mar 2026</span>
+              <span>4.5 ★</span>
+            </div>
+          </article>
+
+          <article class="mini-card">
+            <div class="mini-top">
+              <span>Classici</span>
+              <span>Recensione classica</span>
+            </div>
+            <h3>Cittadino di noir</h3>
+            <p>L’analisi mette in relazione cinema, epoca e personaggio con scrittura pulita.</p>
+            <div class="mini-bottom">
+              <span>05 Mar 2026</span>
+              <span>4.9 ★</span>
+            </div>
+          </article>
+        </aside>
+      </section>
+
+      <section id="blog" class="section">
+        <div class="section-head">
+          <div>
+            <span class="mini-kicker">Blog</span>
+            <h2>Ultime recensioni</h2>
+          </div>
+          <p>Le recensioni vengono lette da Firebase Realtime Database e aggiornate in tempo reale.</p>
+        </div>
+
+        <div id="reviewsGrid" class="grid reviews"></div>
+      </section>
+
+      <section id="admin" class="section">
+        <div class="card info-card">
+          <span class="mini-kicker">Gestione recensioni</span>
+          <h2>Nuova recensione</h2>
+
+          <form id="reviewForm" class="form review-form">
+            <input id="reviewTitle" type="text" placeholder="Titolo film" required />
+            <input id="reviewCategory" type="text" placeholder="Categoria es. Noir, Indie, Classici" required />
+            <input id="reviewType" type="text" placeholder="Tipo es. Recensione film" required />
+            <input id="reviewRating" type="number" min="0" max="5" step="0.1" placeholder="Voto da 0 a 5" required />
+            <input id="reviewDate" type="text" placeholder="Data es. 12 Mar 2026" required />
+            <textarea id="reviewExcerpt" placeholder="Estratto recensione" required></textarea>
+
+            <div class="form-actions">
+              <button id="submitReview" type="submit" class="btn btn-primary">Pubblica recensione</button>
+              <button id="cancelEdit" type="button" class="btn btn-secondary" hidden>Annulla modifica</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section two-col">
+        <div class="card info-card">
+          <span class="mini-kicker">Consigli cinematografici</span>
+          <h2>Da vedere ora</h2>
+
+          <div class="stack">
+            <div class="list-item">
+              <div>
+                <h3>Quarto potere</h3>
+                <p>Thriller psicologico · 1941</p>
+              </div>
+            </div>
+            <div class="list-item">
+              <div>
+                <h3>Metropolis</h3>
+                <p>Fantascienza · 1927</p>
+              </div>
+            </div>
+            <div class="list-item">
+              <div>
+                <h3>Lezioni di piano</h3>
+                <p>Dramma storico · 1993</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="jobs" class="card jobs-card">
+          <div class="section-head compact">
+            <div>
+              <span class="mini-kicker">Bacheca lavoro</span>
+              <h2>Cerchi una collaborazione nel cinema?</h2>
+            </div>
+            <div class="search-box">
+              <input type="text" placeholder="Cerca per ruolo, città o studio" />
+            </div>
+          </div>
+
+          <div class="filters">
+            <span class="filter active">Tutti</span>
+            <span class="filter">Scrittura</span>
+            <span class="filter">Post-produzione</span>
+            <span class="filter">Produzione</span>
+            <span class="filter">Marketing</span>
+          </div>
+
+          <div class="job-list">
+            <article class="job">
+              <div class="job-main">
+                <div class="job-tag">Post-produzione · Freelance</div>
+                <h3>Assistente montaggio</h3>
+                <p>Supporto al montaggio per cortometraggi e contenuti branded. Richiesta sensibilità per ritmo e storytelling.</p>
+              </div>
+              <div class="job-side">
+                <strong>Nebula Post</strong>
+                <span>Milano</span>
+                <span>2 giorni fa</span>
+              </div>
+            </article>
+
+            <article class="job">
+              <div class="job-main">
+                <div class="job-tag">Scrittura · Full time</div>
+                <h3>Sceneggiatore junior</h3>
+                <p>Collaborazione su soggetti, treatment e revisione dialoghi per una piccola produzione indipendente.</p>
+              </div>
+              <div class="job-side">
+                <strong>Atelier Frame</strong>
+                <span>Roma</span>
+                <span>5 giorni fa</span>
+              </div>
+            </article>
+
+            <article class="job">
+              <div class="job-main">
+                <div class="job-tag">Produzione · Project-based</div>
+                <h3>Production designer</h3>
+                <p>Ricerca di una figura capace di costruire mood visivo e coerenza scenografica per progetti d’autore.</p>
+              </div>
+              <div class="job-side">
+                <strong>CineLab Studio</strong>
+                <span>Torino</span>
+                <span>1 settimana fa</span>
+              </div>
+            </article>
+
+            <article class="job">
+              <div class="job-main">
+                <div class="job-tag">Marketing · Part time</div>
+                <h3>Social media per festival</h3>
+                <p>Gestione contenuti social, clip brevi e calendario editoriale per promuovere rassegne e incontri.</p>
+              </div>
+              <div class="job-side">
+                <strong>Visioni Aperte</strong>
+                <span>Bologna</span>
+                <span>8 giorni fa</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="collabora" class="section collaborate">
+        <div class="card form-card">
+          <span class="mini-kicker">Unisciti alla troupe</span>
+          <h2>Collabora con noi</h2>
+          <p>
+            Spazio per candidarsi come autore, montatore, scenografo o social media manager,
+            ma anche per proporre film, festival e nuove rubriche editoriali.
+          </p>
+
+          <form class="form">
+            <input type="text" placeholder="Nome" />
+            <input type="text" placeholder="Cognome" />
+            <input type="email" placeholder="Indirizzo email" />
+            <textarea placeholder="Parlaci di te"></textarea>
+            <button type="submit" class="btn btn-primary">Invia candidatura</button>
+          </form>
+        </div>
+
+        <div class="card footer-card">
+          <div class="tag-grid">
+            <span>Drammatico</span>
+            <span>Indie</span>
+            <span>Horror</span>
+          </div>
+
+          <div class="footer-panel">
+            <span class="mini-kicker">Footer</span>
+            <h3>Milano, Italia</h3>
+            <p>
+              Un finale sobrio e cinematografico, coerente con la palette scura, gli accenti rosati
+              e l’impostazione editoriale del sito.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
