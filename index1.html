@@ -3,264 +3,706 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Criticamente Rosebud | Blog cinema e lavoro</title>
+  <title>Criticamente Rosebud</title>
+  <meta name="description" content="Blog di recensioni cinematografiche, consigli film e bacheca lavoro nell'ambito del cinema." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root{
+      --bg: #111015;
+      --panel: #17141b;
+      --panel-2: #1c1820;
+      --text: #f4eadb;
+      --muted: rgba(244, 234, 219, .72);
+      --line: rgba(255,255,255,.10);
+      --rose: #c96a7c;
+      --rose-2: #f1d8c5;
+      --accent: #d8b9bf;
+      --shadow: 0 24px 80px rgba(0,0,0,.28);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Inter", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(201,106,124,.16), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(241,216,197,.08), transparent 28%),
+        var(--bg);
+      color:var(--text);
+    }
+    a{ color:inherit; text-decoration:none; }
+    button, input, textarea { font: inherit; }
+
+    .site{
+      width:min(1200px, calc(100% - 32px));
+      margin:0 auto;
+      padding:20px 0 48px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:16px;
+      z-index:20;
+      display:flex;
+      justify-content:center;
+      padding:18px 22px;
+      margin-bottom:24px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:rgba(23,20,27,.86);
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow);
+    }
+
+    .nav{
+      display:flex;
+      gap:24px;
+      font-size:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .nav a{ color:var(--muted); }
+    .nav a:hover{ color:#fff; }
+
+    .hero{
+      min-height:540px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:72px 24px 48px;
+    }
+
+    .hero-kicker{
+      margin:0;
+      letter-spacing:.36em;
+      font-size:14px;
+      color:var(--accent);
+    }
+
+    .hero h1{
+      max-width:10.5ch;
+      margin:18px 0 0;
+      font-size:clamp(3rem, 7vw, 5.4rem);
+      line-height:.95;
+      letter-spacing:-.06em;
+      color:#fff;
+    }
+
+    .hero-text{
+      max-width:62ch;
+      margin:22px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.8;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 20px;
+      margin-top:28px;
+      border-radius:999px;
+      background:var(--rose-2);
+      color:#20161e;
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:.08em;
+      border:0;
+      cursor:pointer;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .btn:hover{ transform:translateY(-1px); }
+    .btn.small{
+      min-height:42px;
+      padding:0 18px;
+      margin-top:18px;
+      font-size:12px;
+    }
+    .btn.secondary{
+      background:rgba(255,255,255,.06);
+      color:#f7ecdf;
+      border:1px solid var(--line);
+    }
+
+    .section{ margin-top:30px; }
+    .section-title{
+      margin:0 0 18px;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing:-.04em;
+      text-transform:uppercase;
+    }
+
+    .carousel{
+      display:grid;
+      grid-template-columns:auto repeat(4, 1fr) auto;
+      gap:14px;
+      align-items:stretch;
+    }
+
+    .carousel-arrow{
+      border:0;
+      border-radius:24px;
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      padding:18px 14px;
+      min-width:92px;
+      cursor:pointer;
+      transition:background .2s ease, color .2s ease;
+    }
+    .carousel-arrow:hover{
+      background:rgba(255,255,255,.08);
+      color:#fff;
+    }
+
+    .review{
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .review-thumb{
+      min-height:220px;
+      padding:18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-start;
+      background:
+        linear-gradient(135deg, rgba(42,28,37,.95), rgba(21,19,26,.96) 55%, rgba(56,35,44,.95));
+    }
+
+    .review-index{
+      font-size:38px;
+      font-weight:800;
+      color:rgba(255,255,255,.12);
+    }
+
+    .review h3{
+      margin:0;
+      padding:18px 18px 4px;
+      font-size:22px;
+      letter-spacing:-.04em;
+      color:#fff;
+      text-transform:uppercase;
+    }
+
+    .review p{
+      margin:0;
+      padding:0 18px 18px;
+      font-size:12px;
+      letter-spacing:.22em;
+      color:var(--accent);
+      text-transform:uppercase;
+    }
+
+    .review-body{
+      padding:0 18px 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .review-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:0 18px 18px;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    .review-actions{
+      display:flex;
+      gap:10px;
+      padding:0 18px 18px;
+      flex-wrap:wrap;
+    }
+
+    .mini-btn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#f7ecdf;
+      border-radius:999px;
+      padding:9px 14px;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .mini-btn.danger{
+      border-color:rgba(201,106,124,.35);
+      background:rgba(201,106,124,.12);
+    }
+
+    .tips{
+      margin-top:34px;
+      padding-top:10px;
+    }
+
+    .tips-header{ margin-bottom:18px; }
+    .dots{
+      display:block;
+      margin-bottom:10px;
+      color:var(--accent);
+      letter-spacing:.4em;
+    }
+    .tips-header h2{
+      margin:0;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      text-transform:uppercase;
+    }
+
+    .tips-list{
+      display:grid;
+      gap:22px;
+    }
+
+    .tip{
+      padding:0 0 18px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .tip-genre{
+      display:block;
+      color:var(--accent);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+
+    .tip h3{
+      margin:10px 0 0;
+      font-size:1.2rem;
+      letter-spacing:-.03em;
+      text-transform:uppercase;
+    }
+
+    .collaborate{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+    }
+
+    .collab-title h2{
+      margin:0;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing:-.04em;
+      text-transform:uppercase;
+    }
+
+    .collab-title h3{
+      margin:10px 0 0;
+      font-size:clamp(2rem, 3vw, 3rem);
+      line-height:1;
+    }
+
+    .form{
+      display:grid;
+      gap:14px;
+      max-width:720px;
+      margin-top:18px;
+    }
+
+    .form input,
+    .form textarea,
+    .search-box input{
+      width:100%;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      outline:none;
+      border-radius:18px;
+      padding:14px 16px;
+    }
+
+    .form textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .form input::placeholder,
+    .form textarea::placeholder,
+    .search-box input::placeholder{
+      color:rgba(199,170,176,.9);
+    }
+
+    .tags{
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+      margin-top:34px;
+    }
+
+    .tags span{
+      font-size:14px;
+      font-weight:700;
+      color:#f4eadb;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .footer{
+      padding:32px 0 10px;
+      text-align:left;
+    }
+
+    .footer p{
+      margin:0 0 8px;
+      color:var(--muted);
+    }
+
+    .footer h4{
+      margin:16px 0 0;
+      font-size:18px;
+      letter-spacing:-.02em;
+    }
+
+    .panel{
+      margin-top:24px;
+      padding:24px;
+      border-radius:28px;
+      border:1px solid var(--line);
+      background:rgba(23,20,27,.86);
+      box-shadow:var(--shadow);
+    }
+
+    .panel h2{
+      margin:0;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      text-transform:uppercase;
+    }
+
+    .panel p{
+      margin:12px 0 0;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .panel-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-end;
+      flex-wrap:wrap;
+    }
+
+    .search-box{
+      min-width:280px;
+      flex:1;
+      max-width:420px;
+    }
+
+    .filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:18px 0 16px;
+    }
+
+    .filter{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      border-radius:999px;
+      padding:10px 14px;
+      cursor:pointer;
+      font-size:13px;
+    }
+    .filter.active{
+      background:var(--rose-2);
+      color:#20161e;
+      border-color:transparent;
+      font-weight:700;
+    }
+
+    .job-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .job{
+      display:grid;
+      grid-template-columns:1.4fr .6fr;
+      gap:18px;
+      padding:18px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+
+    .job-tag{
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:11px;
+      margin-bottom:10px;
+    }
+
+    .job-main h3{
+      margin:0;
+      color:#fff;
+      text-transform:uppercase;
+    }
+
+    .job-main p{
+      margin:12px 0 0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .job-side{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
+      padding-left:16px;
+      border-left:1px solid var(--line);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .job-side strong{
+      color:#fff;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .admin-form{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+    .admin-form textarea,
+    .admin-form .full{
+      grid-column:1 / -1;
+    }
+
+    .empty-state{
+      padding:22px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:rgba(244,234,219,.72);
+      grid-column:1 / -1;
+    }
+
+    .toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:16px 0 6px;
+      align-items:center;
+    }
+
+    .tool-note{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    @media (max-width: 1100px){
+      .carousel{
+        grid-template-columns:1fr 1fr;
+      }
+      .carousel-arrow{
+        grid-column:1 / -1;
+        min-width:0;
+      }
+    }
+
+    @media (max-width: 720px){
+      .site{
+        width:min(100% - 18px, 1200px);
+        padding-top:12px;
+      }
+      .topbar{
+        padding:16px;
+        border-radius:24px;
+      }
+      .nav{
+        gap:14px;
+        font-size:13px;
+      }
+      .hero{
+        min-height:auto;
+        padding:54px 12px 36px;
+      }
+      .hero h1{
+        max-width:none;
+      }
+      .carousel{
+        grid-template-columns:1fr;
+      }
+      .review-thumb{
+        min-height:180px;
+      }
+      .job{
+        grid-template-columns:1fr;
+      }
+      .job-side{
+        padding-left:0;
+        border-left:0;
+        border-top:1px solid var(--line);
+        padding-top:14px;
+        flex-direction:row;
+        flex-wrap:wrap;
+      }
+      .admin-form{
+        grid-template-columns:1fr;
+      }
+      .search-box{
+        min-width:0;
+        max-width:none;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="page">
-    <header class="header">
-      <div class="brand">
-        <div class="brand-mark">C</div>
-        <div>
-          <div class="brand-kicker">Criticamente Rosebud</div>
-          <div class="brand-sub">Blog recensioni · Home · Job board cinema</div>
-        </div>
-      </div>
-
+  <div class="site">
+    <header class="topbar">
       <nav class="nav">
         <a href="#home">Home</a>
         <a href="#blog">Blog</a>
-        <a href="#jobs">Bacheca lavoro</a>
-        <a href="#collabora" class="nav-cta">Collabora con noi</a>
+        <a href="#collabora">Collabora con noi</a>
       </nav>
     </header>
 
     <main>
       <section id="home" class="hero">
-        <div class="hero-content">
-          <span class="badge">Cinema · Critica · Opportunità</span>
-          <h1>Recensioni di film, articoli e una bacheca per lavorare nel cinema.</h1>
-          <p>
-            Un sito elegante e cinematografico, con tono editoriale, sezioni dedicate alle recensioni,
-            consigli di visione e annunci per chi cerca collaborazioni nell’industria filmica.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#blog" class="btn btn-primary">Leggi le recensioni</a>
-            <a href="#jobs" class="btn btn-secondary">Cerca lavoro</a>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <span>Recensioni</span>
-              <strong>128 articoli</strong>
-            </div>
-            <div class="stat">
-              <span>Collaborazioni</span>
-              <strong>34 progetti</strong>
-            </div>
-            <div class="stat">
-              <span>Città</span>
-              <strong>Milano · Roma · Torino</strong>
-            </div>
-          </div>
-        </div>
-
-        <aside class="hero-side">
-          <div class="side-head">
-            <div>
-              <span class="mini-kicker">Ultime recensioni</span>
-              <h2>Editoriale in primo piano</h2>
-            </div>
-            <div class="icon-box">★</div>
-          </div>
-
-          <article class="mini-card">
-            <div class="mini-top">
-              <span>Noir</span>
-              <span>Lungo metraggio</span>
-            </div>
-            <h3>Le ombre al neon</h3>
-            <p>Una recensione che esplora luci, ritmo e tensione con taglio autoriale.</p>
-            <div class="mini-bottom">
-              <span>12 Mar 2026</span>
-              <span>4.8 ★</span>
-            </div>
-          </article>
-
-          <article class="mini-card">
-            <div class="mini-top">
-              <span>Indie</span>
-              <span>Corto metraggio</span>
-            </div>
-            <h3>Quadro dopo quadro</h3>
-            <p>Un racconto essenziale, costruito su silenzi, dettagli di regia e fotografia.</p>
-            <div class="mini-bottom">
-              <span>09 Mar 2026</span>
-              <span>4.5 ★</span>
-            </div>
-          </article>
-
-          <article class="mini-card">
-            <div class="mini-top">
-              <span>Classici</span>
-              <span>Recensione classica</span>
-            </div>
-            <h3>Cittadino di noir</h3>
-            <p>L’analisi mette in relazione cinema, epoca e personaggio con scrittura pulita.</p>
-            <div class="mini-bottom">
-              <span>05 Mar 2026</span>
-              <span>4.9 ★</span>
-            </div>
-          </article>
-        </aside>
+        <p class="hero-kicker">CRITICAMENTE ROSEBUD</p>
+        <h1>Esplorazioni cinematografiche organizzate per genere e data per aspiranti registi.</h1>
+        <p class="hero-text">
+          Un punto d’incontro per passione, luci drammatiche ed eleganza strutturale.
+        </p>
+        <a href="#blog" class="btn">LEGGI LE RECENSIONI</a>
       </section>
 
       <section id="blog" class="section">
-        <div class="section-head">
-          <div>
-            <span class="mini-kicker">Blog</span>
-            <h2>Ultime recensioni</h2>
-          </div>
-          <p>Una griglia editoriale chiara, con card eleganti e un’atmosfera da magazine cinematografico.</p>
+        <h2 class="section-title">ULTIME RECENSIONI</h2>
+
+        <div class="carousel" id="carouselArea">
+          <button class="carousel-arrow" type="button" aria-label="Previous" id="prevBtn">Previous</button>
+
+          <article class="review">
+            <div class="review-thumb"><span class="review-index">01</span></div>
+            <h3>LE OMBRE AL NEON</h3>
+            <p>LUNGO METRAGGIO</p>
+          </article>
+
+          <article class="review">
+            <div class="review-thumb"><span class="review-index">02</span></div>
+            <h3>QUADRO DOPO QUADRO</h3>
+            <p>CORTO METRAGGIO</p>
+          </article>
+
+          <article class="review">
+            <div class="review-thumb"><span class="review-index">03</span></div>
+            <h3>CITTADINO DI NOIR</h3>
+            <p>RECENSIONE CLASSICA</p>
+          </article>
+
+          <article class="review">
+            <div class="review-thumb"><span class="review-index">04</span></div>
+            <h3>ONDA D'AVANGUARDIA</h3>
+            <p>SPERIMENTALE</p>
+          </article>
+
+          <button class="carousel-arrow" type="button" aria-label="Next" id="nextBtn">Next</button>
         </div>
 
-        <div class="grid reviews">
-          <article class="card review-card">
-            <div class="poster">
-              <div class="poster-inner">
-                <div class="poster-meta">
-                  <span>Thriller</span>
-                  <span>#01</span>
-                </div>
-                <div>
-                  <p>Recensione film</p>
-                  <h3>Le ombre al neon</h3>
-                </div>
-              </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="hero-kicker" style="display:block; margin-bottom:10px;">GESTIONE RECENSIONI</span>
+              <h2>Nuova recensione</h2>
             </div>
-            <div class="card-body">
-              <div class="card-row">
-                <span>12 Mar 2026</span>
-                <span>4.8 ★</span>
-              </div>
-              <p>Una critica che lavora su fotografia, tensione narrativa e costruzione dei personaggi.</p>
-              <a href="#" class="text-link">Leggi l’articolo →</a>
+            <div class="tool-note">
+              Le recensioni vengono salvate in <strong>Firebase Realtime Database</strong>.
             </div>
+          </div>
+
+          <form id="reviewForm" class="admin-form">
+            <input id="reviewTitle" type="text" placeholder="Titolo film" required />
+            <input id="reviewCategory" type="text" placeholder="Categoria es. Noir, Indie, Classici" required />
+            <input id="reviewType" type="text" placeholder="Tipo es. Recensione film" required />
+            <input id="reviewRating" type="number" min="0" max="5" step="0.1" placeholder="Voto da 0 a 5" required />
+            <input id="reviewDate" type="text" placeholder="Data es. 12 Mar 2026" required />
+            <textarea id="reviewExcerpt" class="full" placeholder="Estratto recensione" required></textarea>
+
+            <div class="toolbar full">
+              <button id="submitReview" type="submit" class="btn">PUBBLICA RECENSIONE</button>
+              <button id="cancelEdit" type="button" class="btn secondary" hidden>ANNULLA MODIFICA</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="reviewsGrid" class="carousel" style="grid-template-columns:1fr; margin-top:22px;"></div>
+      </section>
+
+      <section class="section tips">
+        <div class="tips-header">
+          <span class="dots">* * * *</span>
+          <h2>CONSIGLI CINEMATOGRAFICI</h2>
+        </div>
+
+        <div class="tips-list">
+          <article class="tip">
+            <span class="tip-genre">THRILLER PSICOLOGICO</span>
+            <h3>QUARTO POTERE (1941)</h3>
+            <a href="#" class="btn small">GUARDA ORA</a>
           </article>
 
-          <article class="card review-card">
-            <div class="poster">
-              <div class="poster-inner">
-                <div class="poster-meta">
-                  <span>Indie</span>
-                  <span>#02</span>
-                </div>
-                <div>
-                  <p>Recensione corto</p>
-                  <h3>Quadro dopo quadro</h3>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-row">
-                <span>09 Mar 2026</span>
-                <span>4.5 ★</span>
-              </div>
-              <p>Un film essenziale che vive di dettagli e di una regia estremamente controllata.</p>
-              <a href="#" class="text-link">Leggi l’articolo →</a>
-            </div>
+          <article class="tip">
+            <span class="tip-genre">FANTASCIENZA</span>
+            <h3>METROPOLIS (1927)</h3>
+            <a href="#" class="btn small">GUARDA ORA</a>
           </article>
 
-          <article class="card review-card">
-            <div class="poster">
-              <div class="poster-inner">
-                <div class="poster-meta">
-                  <span>Classici</span>
-                  <span>#03</span>
-                </div>
-                <div>
-                  <p>Recensione classica</p>
-                  <h3>Cittadino di noir</h3>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-row">
-                <span>05 Mar 2026</span>
-                <span>4.9 ★</span>
-              </div>
-              <p>Un’analisi che collega epoca, linguaggio e figura del protagonista con equilibrio.</p>
-              <a href="#" class="text-link">Leggi l’articolo →</a>
-            </div>
-          </article>
-
-          <article class="card review-card">
-            <div class="poster">
-              <div class="poster-inner">
-                <div class="poster-meta">
-                  <span>Sperimentale</span>
-                  <span>#04</span>
-                </div>
-                <div>
-                  <p>Recensione film</p>
-                  <h3>Onda d’avanguardia</h3>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-row">
-                <span>01 Mar 2026</span>
-                <span>4.3 ★</span>
-              </div>
-              <p>Un pezzo che valorizza il montaggio, la composizione e la libertà visiva.</p>
-              <a href="#" class="text-link">Leggi l’articolo →</a>
-            </div>
+          <article class="tip">
+            <span class="tip-genre">DRAMMA STORICO</span>
+            <h3>LEZIONI DI PIANO (1993)</h3>
+            <a href="#" class="btn small">GUARDA ORA</a>
           </article>
         </div>
       </section>
 
-      <section class="section two-col">
-        <div class="card info-card">
-          <span class="mini-kicker">Consigli cinematografici</span>
-          <h2>Da vedere ora</h2>
-
-          <div class="stack">
-            <div class="list-item">
-              <div>
-                <h3>Quarto potere</h3>
-                <p>Thriller psicologico · 1941</p>
-              </div>
-            </div>
-            <div class="list-item">
-              <div>
-                <h3>Metropolis</h3>
-                <p>Fantascienza · 1927</p>
-              </div>
-            </div>
-            <div class="list-item">
-              <div>
-                <h3>Lezioni di piano</h3>
-                <p>Dramma storico · 1993</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="jobs" class="card jobs-card">
-          <div class="section-head compact">
+      <section class="section">
+        <div id="jobs" class="panel">
+          <div class="panel-head">
             <div>
-              <span class="mini-kicker">Bacheca lavoro</span>
-              <h2>Cerchi una collaborazione nel cinema?</h2>
+              <span class="hero-kicker" style="display:block; margin-bottom:10px;">BACHECA LAVORO</span>
+              <h2>CERCHI UNA COLLABORAZIONE NEL CINEMA?</h2>
             </div>
             <div class="search-box">
-              <input type="text" placeholder="Cerca per ruolo, città o studio" />
+              <input type="text" id="jobSearch" placeholder="Cerca per ruolo, città o studio" />
             </div>
           </div>
 
-          <div class="filters">
-            <span class="filter active">Tutti</span>
-            <span class="filter">Scrittura</span>
-            <span class="filter">Post-produzione</span>
-            <span class="filter">Produzione</span>
-            <span class="filter">Marketing</span>
+          <div class="filters" id="jobFilters">
+            <button class="filter active" data-filter="Tutti" type="button">Tutti</button>
+            <button class="filter" data-filter="Scrittura" type="button">Scrittura</button>
+            <button class="filter" data-filter="Post-produzione" type="button">Post-produzione</button>
+            <button class="filter" data-filter="Produzione" type="button">Produzione</button>
+            <button class="filter" data-filter="Marketing" type="button">Marketing</button>
           </div>
 
-          <div class="job-list">
-            <article class="job">
+          <div class="job-list" id="jobList">
+            <article class="job" data-category="Post-produzione">
               <div class="job-main">
                 <div class="job-tag">Post-produzione · Freelance</div>
                 <h3>Assistente montaggio</h3>
@@ -273,7 +715,7 @@
               </div>
             </article>
 
-            <article class="job">
+            <article class="job" data-category="Scrittura">
               <div class="job-main">
                 <div class="job-tag">Scrittura · Full time</div>
                 <h3>Sceneggiatore junior</h3>
@@ -286,7 +728,7 @@
               </div>
             </article>
 
-            <article class="job">
+            <article class="job" data-category="Produzione">
               <div class="job-main">
                 <div class="job-tag">Produzione · Project-based</div>
                 <h3>Production designer</h3>
@@ -299,7 +741,7 @@
               </div>
             </article>
 
-            <article class="job">
+            <article class="job" data-category="Marketing">
               <div class="job-main">
                 <div class="job-tag">Marketing · Part time</div>
                 <h3>Social media per festival</h3>
@@ -316,41 +758,285 @@
       </section>
 
       <section id="collabora" class="section collaborate">
-        <div class="card form-card">
-          <span class="mini-kicker">Unisciti alla troupe</span>
-          <h2>Collabora con noi</h2>
-          <p>
-            Spazio per candidarsi come autore, montatore, scenografo o social media manager,
-            ma anche per proporre film, festival e nuove rubriche editoriali.
-          </p>
+        <div class="panel">
+          <div class="collab-title">
+            <h2>UNISCITI ALLA TROUPE</h2>
+            <h3>Collabora con noi!</h3>
+          </div>
 
           <form class="form">
             <input type="text" placeholder="Nome" />
             <input type="text" placeholder="Cognome" />
             <input type="email" placeholder="Indirizzo email" />
+            <input type="tel" placeholder="Numero di telefono" />
             <textarea placeholder="Parlaci di te"></textarea>
-            <button type="submit" class="btn btn-primary">Invia candidatura</button>
+            <button type="submit" class="btn">INVIA</button>
           </form>
-        </div>
 
-        <div class="card footer-card">
-          <div class="tag-grid">
-            <span>Drammatico</span>
-            <span>Indie</span>
-            <span>Horror</span>
-          </div>
-
-          <div class="footer-panel">
-            <span class="mini-kicker">Footer</span>
-            <h3>Milano, Italia</h3>
-            <p>
-              Un finale sobrio e cinematografico, coerente con la palette scura, gli accenti rosati
-              e l’impostazione editoriale del sito.
-            </p>
+          <div class="tags">
+            <span>DRAMMATICO</span>
+            <span>INDIE</span>
+            <span>HORROR</span>
           </div>
         </div>
       </section>
     </main>
+
+    <footer class="footer">
+      <p>Milano, Italia</p>
+      <p>© 2026 Criticamente Rosebud</p>
+      <h4>Criticamente Rosebud</h4>
+    </footer>
   </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import {
+      getDatabase,
+      ref,
+      push,
+      set,
+      update,
+      remove,
+      onValue,
+      query,
+      orderByChild,
+      get,
+    } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBtI5AKSwqZkYpwObHjOW-4ZR1qJ-CW7VQ",
+      authDomain: "filmsite-80895.firebaseapp.com",
+      databaseURL: "https://filmsite-80895-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "filmsite-80895",
+      storageBucket: "filmsite-80895.firebasestorage.app",
+      messagingSenderId: "1047505050288",
+      appId: "1:1047505050288:web:70a3d200dd9c04c04a7975",
+      measurementId: "G-X8YQ29BT34"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const reviewsGrid = document.getElementById("reviewsGrid");
+    const reviewForm = document.getElementById("reviewForm");
+    const submitReview = document.getElementById("submitReview");
+    const cancelEdit = document.getElementById("cancelEdit");
+    const jobSearch = document.getElementById("jobSearch");
+    const jobFilters = document.getElementById("jobFilters");
+    const jobList = document.getElementById("jobList");
+
+    const fields = {
+      title: document.getElementById("reviewTitle"),
+      category: document.getElementById("reviewCategory"),
+      type: document.getElementById("reviewType"),
+      rating: document.getElementById("reviewRating"),
+      date: document.getElementById("reviewDate"),
+      excerpt: document.getElementById("reviewExcerpt"),
+    };
+
+    let editingId = null;
+
+    function escapeHtml(str = "") {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function renderReviewCard(id, data) {
+      const title = escapeHtml(data.title || "Senza titolo");
+      const category = escapeHtml(data.category || "Recensione");
+      const type = escapeHtml(data.type || "Recensione film");
+      const date = escapeHtml(data.date || "");
+      const excerpt = escapeHtml(data.excerpt || "");
+      const rating = Number(data.rating || 0).toFixed(1);
+
+      return `
+        <article class="review">
+          <div class="review-thumb">
+            <span class="review-index">${escapeHtml(String(id).slice(0, 2).toUpperCase())}</span>
+          </div>
+          <h3>${title}</h3>
+          <p>${type}</p>
+          <div class="review-meta">
+            <span>${category}</span>
+            <span>${date}</span>
+          </div>
+          <div class="review-body">${excerpt}</div>
+          <div class="review-meta" style="padding-top:0;">
+            <span>Voto</span>
+            <span>${rating} ★</span>
+          </div>
+          <div class="review-actions">
+            <button class="mini-btn" data-action="edit" data-id="${id}">Modifica</button>
+            <button class="mini-btn danger" data-action="delete" data-id="${id}">Elimina</button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderEmptyState() {
+      reviewsGrid.innerHTML = `
+        <div class="empty-state">
+          Nessuna recensione presente. Aggiungine una dal form qui sopra.
+        </div>
+      `;
+    }
+
+    function resetForm() {
+      reviewForm.reset();
+      editingId = null;
+      submitReview.textContent = "PUBBLICA RECENSIONE";
+      cancelEdit.hidden = true;
+    }
+
+    reviewForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const payload = {
+        title: fields.title.value.trim(),
+        category: fields.category.value.trim(),
+        type: fields.type.value.trim(),
+        rating: Number(fields.rating.value),
+        date: fields.date.value.trim(),
+        excerpt: fields.excerpt.value.trim(),
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      };
+
+      if (
+        !payload.title ||
+        !payload.category ||
+        !payload.type ||
+        Number.isNaN(payload.rating) ||
+        !payload.date ||
+        !payload.excerpt
+      ) {
+        return;
+      }
+
+      if (editingId) {
+        const existing = await get(ref(db, `reviews/${editingId}`));
+        const old = existing.exists() ? existing.val() : {};
+        await update(ref(db, `reviews/${editingId}`), {
+          ...old,
+          ...payload,
+          createdAt: old.createdAt || Date.now(),
+          updatedAt: Date.now(),
+        });
+      } else {
+        const newRef = push(ref(db, "reviews"));
+        await set(newRef, payload);
+      }
+
+      resetForm();
+    });
+
+    cancelEdit.addEventListener("click", resetForm);
+
+    reviewsGrid.addEventListener("click", async (e) => {
+      const btn = e.target.closest("button[data-action]");
+      if (!btn) return;
+
+      const id = btn.dataset.id;
+      const action = btn.dataset.action;
+
+      if (action === "delete") {
+        const ok = confirm("Vuoi eliminare questa recensione?");
+        if (!ok) return;
+        await remove(ref(db, `reviews/${id}`));
+        return;
+      }
+
+      if (action === "edit") {
+        const snap = await get(ref(db, `reviews/${id}`));
+        if (!snap.exists()) return;
+
+        const data = snap.val();
+        fields.title.value = data.title || "";
+        fields.category.value = data.category || "";
+        fields.type.value = data.type || "";
+        fields.rating.value = data.rating ?? "";
+        fields.date.value = data.date || "";
+        fields.excerpt.value = data.excerpt || "";
+
+        editingId = id;
+        submitReview.textContent = "AGGIORNA RECENSIONE";
+        cancelEdit.hidden = false;
+        window.location.hash = "#admin";
+      }
+    });
+
+    const reviewsQuery = query(ref(db, "reviews"), orderByChild("createdAt"));
+
+    onValue(reviewsQuery, (snapshot) => {
+      if (!snapshot.exists()) {
+        renderEmptyState();
+        return;
+      }
+
+      const items = [];
+      snapshot.forEach((child) => {
+        items.push({
+          id: child.key,
+          ...child.val(),
+        });
+      });
+
+      items.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+      reviewsGrid.innerHTML = items.map((item) => renderReviewCard(item.id, item)).join("");
+    });
+
+    const allJobs = Array.from(document.querySelectorAll(".job"));
+    let activeFilter = "Tutti";
+
+    function applyJobFilters() {
+      const q = jobSearch.value.trim().toLowerCase();
+
+      allJobs.forEach((job) => {
+        const category = job.dataset.category || "";
+        const text = job.textContent.toLowerCase();
+        const matchesFilter = activeFilter === "Tutti" || category === activeFilter;
+        const matchesQuery = !q || text.includes(q);
+        job.style.display = matchesFilter && matchesQuery ? "" : "none";
+      });
+    }
+
+    jobFilters.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter");
+      if (!btn) return;
+
+      document.querySelectorAll(".filter").forEach((el) => el.classList.remove("active"));
+      btn.classList.add("active");
+      activeFilter = btn.dataset.filter;
+      applyJobFilters();
+    });
+
+    jobSearch.addEventListener("input", applyJobFilters);
+
+    const carouselArea = document.getElementById("carouselArea");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let carouselOffset = 0;
+
+    function moveCarousel(direction) {
+      const cards = Array.from(carouselArea.querySelectorAll(".review"));
+      if (!cards.length) return;
+
+      carouselOffset = (carouselOffset + direction + cards.length) % cards.length;
+      cards.forEach((card, index) => {
+        const visibleIndex = (index - carouselOffset + cards.length) % cards.length;
+        card.style.order = visibleIndex;
+      });
+    }
+
+    prevBtn.addEventListener("click", () => moveCarousel(-1));
+    nextBtn.addEventListener("click", () => moveCarousel(1));
+  </script>
 </body>
 </html>
